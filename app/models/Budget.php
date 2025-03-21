@@ -6,6 +6,7 @@ namespace app\models;
 require_once 'app/models/GenericClass.php';
 
 use app\models\GenericClass;
+use Flight;
 
 class Budget extends GenericClass
 {
@@ -64,5 +65,24 @@ class Budget extends GenericClass
     public function setValidation($validation)
     {
         $this->validation = $validation;
+    }
+
+    public function getBudgetInitial($mois,$annee){
+        $listePeriode = (new Periode(Flight::db()))->findAll();
+        $budgetInitial = new Budget(null,0,0,0,0,null);
+        foreach($listePeriode as $periode){
+            if($periode->getMois()==$mois && $periode->getAnnee()==$annee){
+                $budget = new Budget();
+                $budget = $budget->getById($periode->getIdBudget());
+                if($budget->getIdRubrique()==6 && $budget->getValidation()){
+                    $budgetInitial = $budget;
+                    break;
+                }
+                if($budget->getValidation()){
+                    $budgetInitial = $budget;
+                }
+            }
+        }
+        return $budgetInitial;
     }
 }
