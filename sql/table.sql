@@ -24,11 +24,11 @@ CREATE TABLE DepartementUtilisateur (
 
 CREATE TABLE Budget (
     id INT PRIMARY KEY,
-    idRubrique INT NULL,
-    prevision DECIMAL(10,2) NULL,
-    realisation DECIMAL(10,2) NULL,
-    ecart DECIMAL(10,2) NULL,
-    validation BOOLEAN NULL,
+    idRubrique INT ,
+    prevision DECIMAL(10,2) ,
+    realisation DECIMAL(10,2) ,
+    ecart DECIMAL(10,2) ,
+    validation BOOLEAN ,
     FOREIGN KEY (idRubrique) REFERENCES Rubrique(id)
 );
 

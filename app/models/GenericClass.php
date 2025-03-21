@@ -12,8 +12,8 @@ use ReflectionProperty;
 
 class GenericClass extends BaseObject {
 
-    public function __construct($id = null, $nom = null) {
-        parent::__construct($id, $nom); // Appel du constructeur de la classe parente
+    public function __construct($id = null) {
+        parent::__construct($id); // Appel du constructeur de la classe parente
     }
 
     /**
@@ -28,10 +28,28 @@ class GenericClass extends BaseObject {
      * Retourne les propriétés déclarées dans la classe parente (BaseObject).
      */
     protected function getDeclaredFields() {
+        $fields = [];
+        $seenNames = [];
         $reflection = new ReflectionClass($this);
-        $parentReflection = $reflection->getParentClass(); // Obtient la classe parente (BaseObject)
-        return $parentReflection->getProperties(ReflectionProperty::IS_PUBLIC | ReflectionProperty::IS_PROTECTED | ReflectionProperty::IS_PRIVATE);
+    
+        do {
+            foreach ($reflection->getProperties(
+                ReflectionProperty::IS_PUBLIC |
+                ReflectionProperty::IS_PROTECTED |
+                ReflectionProperty::IS_PRIVATE
+            ) as $property) {
+                $name = $property->getName();
+                if (!isset($seenNames[$name])) {
+                    $fields[] = $property;
+                    $seenNames[$name] = true;
+                }
+            }
+            $reflection = $reflection->getParentClass();
+        } while ($reflection);
+    
+        return $fields;
     }
+    
 
     public function findAll() {
         $tableName = $this->getTableName(); // Utilisation de getTableName()
