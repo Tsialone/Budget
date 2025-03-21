@@ -1,0 +1,46 @@
+version: '3.8'
+
+services:
+  web:
+    build: .
+    ports:
+      - "1902:80"
+    volumes:
+      - .:/var/www/html/
+    container_name: si_budget
+    depends_on:
+      - db  
+    environment:
+      DB_HOST: db 
+      DB_USER: root
+      DB_PASSWORD: secret
+      DB_NAME: budget
+
+  db:
+    image: mysql:5.7 
+    container_name: budget_sql
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD: secret  
+      MYSQL_DATABASE: budget     
+      MYSQL_USER: 'itu'              
+      MYSQL_PASSWORD: 'bloodseeker'     
+    volumes:
+      - mysql_data:/var/lib/mysql   
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    container_name: phpmyadmin
+    environment:
+      PMA_HOST: db
+      MYSQL_ROOT_PASSWORD: secret
+    ports:
+      - "8081:80"  # You can change the port if you prefer
+    depends_on:
+      - db
+    networks:
+      - default
+
+volumes:
+  mysql_data:

@@ -3,6 +3,7 @@
 
 namespace app\controllers;
 
+use app\models\Rubrique;
 use app\models\UsersModel;
 
 // use app\models\ProductModel;
@@ -12,8 +13,11 @@ class UtilisateurController
 {
     public function __construct() {}
 
-    public function testCon(){
-        Flight::render("hello" , []);
+    public function previsionBudgetair(){
+        $temp_rubrique =  new Rubrique();
+        $all_rubrique = $temp_rubrique->findAll() ;
+        $data = ['annee'=>2024 ,  'idDepartement'=> 1 ];
+        Flight::render("prevision-budgetaire" , $data);
 
     }
     

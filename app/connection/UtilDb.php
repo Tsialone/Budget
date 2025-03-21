@@ -9,4 +9,3 @@ class UtilDb
         return Flight::db();
     }
 }
-?>
