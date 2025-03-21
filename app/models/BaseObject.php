@@ -2,11 +2,9 @@
 namespace app\models;
 abstract class BaseObject {
     protected $id;
-    protected $nom;
 
-    public function __construct($id = null, $nom = null) {
+    public function __construct($id = null) {
         $this->id = $id;
-        $this->nom = $nom;
     }
 
     public function getId() {
@@ -17,13 +15,9 @@ abstract class BaseObject {
         $this->id = $id;
     }
 
-    public function getNom() {
-        return $this->nom;
-    }
+    
 
-    public function setNom($nom) {
-        $this->nom = $nom;
-    }
+
 
     abstract public function findAll();
     abstract public function save();
