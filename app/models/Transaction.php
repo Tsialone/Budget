@@ -26,5 +26,21 @@ class Transaction extends GenericClass
     public function setIdBudget($idBudget){
         $this->idBudget = $idBudget;
     }
+
+    public function validateTransaction (){
+        $temp_budget = new Budget();
+        $his_budget = $temp_budget->getById($this->getIdBudget());
+        $his_budget->setValidation(1);
+        $his_budget->update();
+        $this->delete();
+    }
+
+    public function denyTransaction (){
+        $temp_budget = new Budget();
+        $his_budget = $temp_budget->getById($this->getIdBudget());
+        $his_budget->update();
+        $this->delete();
+        $his_budget->delete();
+    }
 }
 ?>

@@ -3,9 +3,15 @@
 use app\connection\UtilDb;
 use app\models\Budget;
 use app\models\Departement;
+use app\models\Transaction;
 use app\models\Utilisateur;
 
-$budget  = new Budget(3, 1, 1023, 29, 1, true);
+$budget  = new Budget(1, 1, 1, 12, 1, null);
+$temp_transaction = new Transaction(1  , 1 ,1);
+// $budget->demandeValidation(1);
+$temp_transaction->denyTransaction();
+
+// $temp_transaction->validateTransaction();
 // $budget->save();ubu
 $mois = 12;
 // $budget->save();

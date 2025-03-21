@@ -184,9 +184,9 @@ class GenericClass extends BaseObject {
             $stmt = $pdo->prepare($sql);
             $stmt->execute($values);
 
-            if ($stmt->rowCount() == 0) {
-                throw new PDOException("Aucune ligne mise à jour. Vérifiez l'ID.");
-            }
+            // if ($stmt->rowCount() == 0) {
+            //     throw new PDOException("Aucune ligne mise à jour. Vérifiez l'ID.");
+            // }
         } catch (PDOException $e) {
             echo "Erreur lors de la mise à jour : " . $e->getMessage();
             throw $e;

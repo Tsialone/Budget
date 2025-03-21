@@ -31,8 +31,6 @@ class Periode extends GenericClass
         $donnee[0] = $mois;
         $donnee[1] = $annee;
         $sql = "SELECT SUM(R.categorie*B.prevision)AS prev,SUM(R.categorie*B.realisation),SUM(B.prevision-B.realisation) AS real  FROM Periode AS P JOIN Budget AS B on B.id = P.idBudget JOIN Rubrique AS R on B.idRubrique = R.id WHERE mois = ? AND annee = ?";
-
-
         $pstmt = $this->db->prepare($sql);
         $pstmt->execute($donnee);
 

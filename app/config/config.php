@@ -69,18 +69,21 @@ if (Debugger::$showBar && php_sapi_name() !== 'cli') {
 return [
 	'database' => [
 		// uncomment the below 4 lines for mysql
-		'host' => 'localhost',
+
+		//nambin
+		// 'host' => 'localhost',
+		// 'dbname' => 'budget',
+		// 'user' => 'root',
+		// 'password' => ''
+
+		//niavo
+		'host' => 'db',
 		'dbname' => 'budget',
 		'user' => 'root',
-		'password' => ''
+		'password' => 'secret'
 
-		//  'host' => '127.0.0.1',
-		//  'dbname' => 'db_s2_ETU003232',
-		//  'user' => 'ETU003232 ',
-		//  'password' => 'hn1fZV7w'
 
-		// uncomment the following line for sqlite
-		// 'file_path' => __DIR__ . $ds . '..' . $ds . 'database.sqlite'
+		
 	],
 
 	// this is just here for an example
