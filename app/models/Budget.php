@@ -68,6 +68,13 @@ class Budget extends GenericClass
     }
 
     public function getBudgetInitial($mois,$annee){
+
+        $mois--;
+        if($mois < 1){
+            $mois=12;
+            $annee--;
+        }
+
         $listePeriode = (new Periode(Flight::db()))->findAll();
         $budgetInitial = new Budget(null,0,0,0,0,null);
         foreach($listePeriode as $periode){
