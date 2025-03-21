@@ -35,6 +35,4 @@ use app\models\Utilisateur;
 
 // Redis? This is where you'd set that up
 // $app->register('redis', Redis::class, [ $config['redis']['host'], $config['redis']['port'] ]);
-Flight::map('Utilisateur', function () {
-    return new Utilisateur(Flight::db());
-});
+

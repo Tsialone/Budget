@@ -1,27 +1,14 @@
 <?php
-
 namespace app\models;
-use Flight;
-use PDO;
-class Utilisateur
+
+
+require_once 'app/models/GenericClass.php';
+use app\models\GenericClass;
+class Utilisateur extends GenericClass
 {
-    private $db;
-    public function __construct($db)
+    public function __construct($id = null, $nom = null)
     {
-        $this->db = $db;
-    }
-   
-
-    public function getAdmin($email, $password)
-    {
-        $stmt = $this->db->prepare("SELECT * FROM t_user WHERE email = :email AND password = :password AND admin=1");
-        $stmt->execute(['email' => $email, 'password' => $password]);
-        return $stmt->fetch();
-    }
-
-    public function insertAdmin($name, $email, $password)
-    {
-        $stmt = $this->db->prepare("INSERT INTO t_users (email , name , password , admin) VALUES (:email , :name , :password , 1)");
-        $stmt->execute(['name' => $name, 'email' => $email, 'password' => $password]);
+            parent::__construct($id, $nom);
     }
 }
+?>

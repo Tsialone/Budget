@@ -3,7 +3,7 @@ CREATE TABLE Departement (
     nom VARCHAR(255)
 );
 
-CREATE TABLE Utilisateur (
+CREATE TABLE Utilisateur ( 
     id INT PRIMARY KEY,
     nom VARCHAR(255)
 );
@@ -30,6 +30,16 @@ CREATE TABLE Budget (
     ecart DECIMAL(10,2) NULL,
     validation BOOLEAN NULL,
     FOREIGN KEY (idRubrique) REFERENCES Rubrique(id)
+);
+
+CREATE TABLE Periode (
+    id INT PRIMARY KEY,
+    mois  INT  ,
+    annee INT ,
+    idBudget INT, 
+    idDepartement INT,
+    FOREIGN KEY (idDepartement) REFERENCES Departement(id),
+    FOREIGN KEY (idBudget) REFERENCES Budget(id)
 );
 
 CREATE TABLE Transaction (

@@ -29,7 +29,7 @@ use flight\net\Router;
 // http://localhost/c/public/traitement-login
 
 $utilisateur_controller = new UtilisateurController();
-$router->get('/', [ $utilisateur_controller, 'testCon' ]); 	
+$router->get('/', [ $utilisateur_controller, 'previsionBudgetair' ]); 	
 
 
 
